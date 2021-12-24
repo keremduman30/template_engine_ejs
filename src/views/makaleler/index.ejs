@@ -1,0 +1,29 @@
+<%- include('../partials/_header.ejs') %>
+
+    <!-- simdi biz cardlarrı kullanacaz bilgiler için bunu bulmaının colums ını kullanarak ypalaım
+columns yan yana elemanların gelmesini saglar eger biz tasan elemanların asagı gelmesini istiyorsak is-multiline diyecez
+column hepsini 12 parca olark dusunuyor biz is 4 dersek 12 4 ü olarak alıyor ve geriye kalanları altta atıyor is-multiline sayesinde
+
+-->
+    <div class="columns is-multiline ">
+        <% makaleler.forEach((makale,index)=> { %>
+            <!-- simdi her cocugu foreach ile colum olarak belirtmek lazım ve forecah içindeki card kulnadık ve geriye indexi 
+            yolladık 
+            -->
+            <div class="column is-4 ">
+                <%- include("../partials/_card.ejs",{ makale, index}) %>
+            </div>
+            <% }) %>
+
+    </div>
+    <!-- sayfalama mantıgı -->
+    <% 
+    const sayfaSayisi=sayfaBilgisi["x-wp-totalpages"];//aslında sayfabilgisi dizideil ama - işareti algılamadıgı içn boyle yazdık
+    const toplamVeri=sayfaBilgisi["x-wp-total"];
+    console.log(sayfaSayisi, toplamVeri);
+    %> 
+    
+    <div class="column is-12 ">
+        <%- include('../partials/_pagination.ejs',{sayfaSayisi,toplamVeri}) %>
+    </div>
+   

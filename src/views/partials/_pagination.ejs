@@ -1,0 +1,14 @@
+<nav class="pagination is-medium" role="navigation" aria-label="pagination">
+  <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+  <a class="pagination-next">Next page</a>
+  <ul class="pagination-list">
+    <!-- sayfada 14 tane gozukmesi lazım onu foreach ile gezip yazacaz-->
+    <% for( let index=1; index <=sayfaSayisi; index++ ) { %>
+      <a class="pagination-link" aria-label="Goto page ">
+        <%- index %>
+      </a>
+      <% } %>
+
+  </ul>
+</nav>
+<div class="block"></div>

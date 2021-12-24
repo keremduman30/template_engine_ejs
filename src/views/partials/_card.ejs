@@ -1,0 +1,50 @@
+<!-- 
+asagıdaki yukseklik biz ejs de js fonksyonları yazamadıgımız için <yuzde kulanıyorduk burda rastgele resim getireilen linkten
+her gette aynı resim geliyor ama biz boyutunu dgeistirrirsek farklı resimler getiritoruz o yuzden index.ejs den aldıgmız makale ve index
+kalmıstık indexi 90 ın sonuna ekledik ve bu 900 901 diye gideecei için farklı resimler getiriyor 
+ve asgıda gene ullanmak için yuzdde kullandık
+
+ -->
+<!-- not: simdi hem tummakalelerde bu carda makale ve index geliyor hemde tek makalede bu carda index ve makale geliyor 
+o yuzdden once eger index undifined ise yukseklik sabit olsun dedik zaten tek resim ama tum ise index ile boyutu degistirinceresimde 
+degisiyor
+-->
+<%  
+let yukseklik="" ; 
+if (index==undefined) {//eger index undifined ise sabit bir yukseklik olsun. 
+     yukseklik="600";
+    }
+     else { 
+         const mod=index%10;
+         if (mod==0) {
+            yukseklik="600";  
+         }
+         else   yukseklik="90"+mod ;
+       
+        }
+          %>
+
+    <div class="card">
+        <div class="card-image">
+            <figure class="image is-4by3">
+                <img src="https://source.unsplash.com/random/800x<%=yukseklik%> " alt="Placeholder image">
+            </figure>
+        </div>
+        <div class="card-content">
+            <div class="media">
+
+                <div class="media-content">
+                    <p class="title is-4">
+                        <%- makale.title.rendered %>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="content">
+                <%- index==undefined ? makale.content.rendered : makale.excerpt.rendered.slice(0,50) %><br>
+                 <%- index==undefined ? makale.content.rendered : makale.excerpt.rendered.slice(0,50) %><br>
+                    <a href="/blog/<%=makale.id%> ">devamnı oku</a>
+            </div>
+        </div>
+    </div>
