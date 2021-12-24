@@ -1,11 +1,10 @@
 const axios = require('axios');
 
 const tumMakaleleriGetir = async (req, res) => {
-    //biz istekte res.json yapacagımız gibi arayuz olarak html de gosterebiliriiz oyuzden html kulancaksak render kullacaz
-    //bu bir proje old için emreltunbielk sitesini kulanıp datalarını alıp indexe yoluyacaz
+   
     try {
         const blogApi = await axios.get("https://emrealtunbilek.com/wp-json/wp/v2/posts?per_page=20");
-        // console.log(blogApi.data);s
+       
         res.render("./makaleler/index.ejs", {
             makaleler: blogApi.data,
             sayfaBilgisi: blogApi.headers
@@ -27,7 +26,7 @@ const tekMakaleGetir = async (req, res) => {
     const makaleID = req.params.makaleId;
     try {
         const tekMakale = await axios.get("https://emrealtunbilek.com/wp-json/wp/v2/posts/" + makaleID);
-        res.render("./makaleler/makale.ejs", {//tek makaleye bu parametreyi makale ejs gonderiyozu
+        res.render("./makaleler/makale.ejs", {
             makale: tekMakale.data,
         });
 
@@ -46,10 +45,10 @@ const tekMakaleGetir = async (req, res) => {
 }
 
 const aramaYap = async (req, res, next) => {
-    const aranacakKelime = req.body.kerem;//biz input textin namesine search dedik bı istek yaparken bodysinde search olanı arıyacak 
+    const aranacakKelime = req.body.kerem;
     try {
         const blogApi = await axios.get("https://emrealtunbilek.com/wp-json/wp/v2/posts?search=" + aranacakKelime);
-        //sayfalama bilgisi için kactane veri var kactane sayfa olmalı diye headersda bu bilgiler mevcut biz onlarıda aktaralım
+    
 
         // console.log(blogApi.data);s
         res.render("./makaleler/index.ejs", {
@@ -67,7 +66,7 @@ const aramaYap = async (req, res, next) => {
     }
 }
 
-//birden gazla metod olacagı için obje olarak  dısarıya sunduk 
+
 module.exports = {
     tumMakaleleriGetir,
     tekMakaleGetir,
